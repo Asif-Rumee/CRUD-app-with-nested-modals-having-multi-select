@@ -25,7 +25,6 @@ function findPostIndex(postId) {
     }
 };
 
-
 let Home = Vue.extend({
     template: '#home-page',
     methods: {
@@ -206,7 +205,6 @@ let DeleteCategory = Vue.extend({
 });
 
 
-
 let router = new VueRouter({
     routes: [{ path: '/', component: Home, meta: { title: 'Home' } },
     { path: '/posts', component: PostsList, meta: { title: 'Posts' } },
@@ -221,6 +219,7 @@ let router = new VueRouter({
     { path: '/category/:category_id/delete', component: DeleteCategory, name: 'delete-category', meta: { title: 'Delete Category' } }
     ]
 });
+
 
 let app = new Vue({
     router: router,
@@ -301,10 +300,8 @@ let app = new Vue({
             this.ifAddPost = false;
             console.log(this.postName);
             console.log("create post completed");
-
-        },
+        }
     },
-
 
     watch: {
         '$route'(to, from) {
@@ -317,46 +314,28 @@ let app = new Vue({
 
 //get button data-id
 $("#delete-category-modal").on("show.bs.modal", function (e) {
-
-
     //delete category 
-
     $("#delete-category-btn").on("click", function (e) {
-
         app.deleteCategoryRoot();
-
         setTimeout(function () {
             $('#delete-category-modal').modal('hide');
         }, 100);
     });
 });
 
-
+//delete post 
 $("#delete-post-modal").on("show.bs.modal", function (e) {
-
-    //delete post 
-
     $("#delete-post-btn").on("click", function (e) {
-
-        console.log('del post before');
         app.deletePostRoot();
-
-        console.log('del post after');
-
         setTimeout(function () {
             $('#delete-post-modal').modal('hide');
         }, 100);
     });
 });
 
-
+//edit category 
 $("#edit-category-modal").on("show.bs.modal", function (e) {
-
-    //edit category 
-
     $("#edit-category-btn").on("click", function (e) {
-
-
         $("#categoryEditForm").submit(function (event) {
             event.preventDefault();
             let name = $("input[name='name']", this).val();
@@ -367,85 +346,59 @@ $("#edit-category-modal").on("show.bs.modal", function (e) {
         setTimeout(function () {
             $('#edit-category-modal').modal('hide');
         }, 100);
-
     });
 });
 
-
+//edit post 
 $("#edit-post-modal").on("show.bs.modal", function (e) {
-
-    //edit post 
-
     $("#edit-post-btn").on("click", function (e) {
 
         $("#postEditForm").submit(function (event) {
             let categoriesSelected = $('#editFormSelected').val();
-
             let name = $("input[name='editNamePost']", this).val();
-            let description = $("input[name='editDescription']", this).val();
+            let description = $("textarea:input[name='editDescription']", this).val();
             let category = categoriesSelected;
             app.editPostRoot(name, description, category);
-            console.log(name);
-
             event.preventDefault();
         });
 
         setTimeout(function () {
             $('#edit-post-modal').modal('hide');
         }, 100);
-
     });
 });
 
-
+//create a new category
 $("#create-category-modal").on("show.bs.modal", function (e) {
-
-    //create a new category
-
     $("#create-category-btn").on("click", function (e) {
 
-
         $("#createForm").submit(function (event) {
-
             let name = $("input[name='name']", this).val();
             app.createCategoryRoot(name);
-            console.log(name);
-
             event.preventDefault();
         });
 
         setTimeout(function () {
             $('#create-category-modal').modal('hide');
         }, 100);
-
     });
 });
 
-
+//create a new post
 $("#create-post-modal").on("show.bs.modal", function (e) {
-
-    //create a new post
-
     $("#create-post-btn").on("click", function (e) {
-
 
         $("#postCreateForm").submit(function (event) {
             let categoriesSelected = $('#createFormSelected').val();
-
             let name = $("input[name='namePost']", this).val();
-            let description = $.trim($("add-description").val());
+            let description = $("textarea:input[name='description']", this).val();
             let category = categoriesSelected;
             app.createPostRoot(name, description, category);
-            console.log(name);
-
-            console.log('not working');
-
             event.preventDefault();
         });
 
         setTimeout(function () {
             $('#create-post-modal').modal('hide');
         }, 100);
-
     });
 });
