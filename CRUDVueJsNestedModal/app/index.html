@@ -5,28 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <title></title>
-
   <link rel='stylesheet' href='static/css/bootstrap.min.css'>
   <link rel='stylesheet' href='static/css/bootstrap-select.min.css'>
-
-
-
-  <script src='static/js/vue.js'></script>
-  <script src='static/js/vue-router.js'></script>
-  <script src='static/js/jquery-3.2.1.slim.min.js'></script>
-  <script src='static/js/popper.min.js'></script>
-  <script src='static/js/bootstrap.min.js'></script>
-  <script src='static/js/bootstrap-select.min.js'></script>
 
 </head>
 
 <body>
-
   <div class="container">
-
-
     <header class="page-header">
       <div class="branding">
         <h1>Vue.js CRUD app with nested modals</h1>
@@ -34,7 +20,6 @@
     </header>
     <hr />
     <main id="crudapp"></main>
-
   </div>
 
   <template id="post-list">
@@ -69,7 +54,6 @@
             <td>{{ post.description }}</td>
             <td>
               {{ post.category }}
-
             </td>
             <td>
               <router-link class="btn btn-primary btn-xs" :to="{name: 'edit-post', params: {post_id: post.id}}"
@@ -113,7 +97,6 @@
       <b>Category:</b>
       <div>{{ post.category }}</span></div>
       <br />
-
       <router-link to="/">Back to posts list</router-link>
     </section>
   </template>
@@ -182,25 +165,18 @@
                 data-target="#delete-category-modal" :data-id="category.id">
                 Delete</router-link>
             </td>
-            <router-view ref="child">
-
-            </router-view>
           </tr>
         </tbody>
       </table>
-
     </section>
   </template>
 
   <template id="home-page">
     <section>
       <div>
-
         <h2>Home Page</h2>
         <router-link to="/posts" class="btn btn-secondary">Posts</router-link>
         <router-link to="/categories" class="btn btn-secondary">Categories</router-link>
-
-
       </div>
     </section>
   </template>
@@ -230,8 +206,6 @@
         <button type="submit" class="btn btn-primary" @click="editCategory">Save</button>
         <router-link to="/" class="btn btn-default">Cancel</router-link>
       </form>
-
-
     </section>
   </template>
 
@@ -256,7 +230,6 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
         </div>
-
         <div class="modal-body">
           <section>
             <h2 id="pid">Delete category </h2>
@@ -275,7 +248,6 @@
     </div>
   </div>
 
-
   <!-- Modal Edit Category -->
   <div class="modal fade" id="edit-category-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
@@ -286,7 +258,6 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
         </div>
-
         <div class="modal-body">
           <section>
             <h2>Edit Category</h2>
@@ -298,7 +269,6 @@
               <button type="submit " class="btn btn-danger" id="edit-category-btn" data-catName="">Save</button>
               <router-link to="/" class="btn btn-default">Cancel</router-link>
             </form>
-
           </section>
         </div>
         <div class="modal-footer">
@@ -319,7 +289,6 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
         </div>
-
         <div class="modal-body">
           <section>
             <h2>Create New Category</h2>
@@ -328,11 +297,9 @@
                 <label for="create-name">Name</label>
                 <input class="form-control" id="create-name" name="name" required />
               </div>
-
               <button type="submit" class="btn btn-danger" id="create-category-btn" data-catName="">Create</button>
               <router-link to="/" class="btn btn-default">Cancel</router-link>
             </form>
-
           </section>
         </div>
         <div class="modal-footer">
@@ -353,7 +320,6 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
         </div>
-
         <div class="modal-body">
           <section>
             <h2>Create New Post</h2>
@@ -374,11 +340,9 @@
                   <option value="Academic">Academic</option>
                 </select>
               </div>
-
               <button type="submit" class="btn btn-danger" id="create-post-btn" data-postName="">Create</button>
               <router-link to="/" class="btn btn-default">Cancel</router-link>
             </form>
-
           </section>
         </div>
         <div class="modal-footer">
@@ -399,7 +363,6 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
         </div>
-
         <div class="modal-body">
           <section>
             <h2>Edit Post</h2>
@@ -420,11 +383,9 @@
                   <option value="Academic">Academic</option>
                 </select>
               </div>
-
               <button type="submit " class="btn btn-danger" id="edit-post-btn" data-postName="">Save</button>
               <router-link to="/" class="btn btn-default">Cancel</router-link>
             </form>
-
           </section>
         </div>
         <div class="modal-footer">
@@ -445,15 +406,11 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
         </div>
-
         <div class="modal-body">
           <section>
-            <h2 id="pid">Delete category ID: </h2>
+            <h2 id="pid">Delete post </h2>
             <form v-on:submit="deleteCategory">
               <p>The action cannot be undone.</p>
-
-
-
               <button type="button" class="btn btn-danger" id="delete-post-btn" data-postID="">Delete</button>
               <router-link to="/" class="btn btn-default">Cancel</router-link>
             </form>
@@ -470,11 +427,11 @@
 
   <script src='static/js/vue.js'></script>
   <script src='static/js/vue-router.js'></script>
+  <script src='static/js/jquery-3.2.1.slim.min.js'></script>
+  <script src='static/js/popper.min.js'></script>
+  <script src='static/js/bootstrap.min.js'></script>
+  <script src='static/js/bootstrap-select.min.js'></script>
   <script src="static/js/index.js"></script>
-  <script>
-
-
-  </script>
 </body>
 
 </html>
