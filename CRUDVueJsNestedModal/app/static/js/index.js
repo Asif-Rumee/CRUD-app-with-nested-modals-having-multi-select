@@ -143,7 +143,6 @@ let Categories = Vue.extend({
             return this.id;
         }
     }
-
 });
 
 let AddCategory = Vue.extend({
@@ -164,9 +163,7 @@ let AddCategory = Vue.extend({
             router.push('/');
             this.$emit('createComplete');
         },
-
     },
-
 });
 
 let EditCategory = Vue.extend({
@@ -212,7 +209,6 @@ let router = new VueRouter({
     { path: '/add-post', component: AddPost, meta: { title: 'Make new Post' } },
     { path: '/post/:post_id/edit', component: PostEdit, name: 'edit-post', meta: { title: 'Edit Post' } },
     { path: '/post/:post_id/delete', component: PostDelete, name: 'delete-post', meta: { title: 'Delete Post' } },
-
     { path: '/categories', component: Categories, name: 'categories', meta: { title: 'Categories', showModal: true } }, //children: [{ path: ':category_id/delete', name: 'modal-delete-category', component: DeleteCategory, props: true, meta: { showModal: true } }] 
     { path: '/add-category', component: AddCategory, meta: { title: 'Add Category' } },
     { path: '/category/:category_id/edit', component: EditCategory, name: 'edit-category', meta: { title: 'Edit Category' } },
@@ -266,7 +262,7 @@ let app = new Vue({
         },
         createCategoryComplete: function () {
             this.ifAddCat = false;
-            console.log("create completed");
+            console.log("create category completed");
         },
 
 
@@ -298,7 +294,6 @@ let app = new Vue({
         },
         createPostComplete: function () {
             this.ifAddPost = false;
-            console.log(this.postName);
             console.log("create post completed");
         }
     },
@@ -373,7 +368,8 @@ $("#edit-post-modal").on("show.bs.modal", function (e) {
                 $('#edit-post-modal').modal('hide');
             }, 100);
             new Promise(function () {
-                $('#newCategorySelect').click();
+                location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category';
+                $('#create-category-modal').modal('show');
             }).then(function () {
                 setTimeout(function () {
                     $('#edit-post-modal').modal('show');
@@ -403,8 +399,8 @@ $("#edit-post-modal").on("show.bs.modal", function (e) {
 $("#create-category-modal").on("show.bs.modal", function (e) {
     $("#create-category-btn").on("click", function (e) {
         $("#createForm").submit(function (event) {
-            let name = $("input[name='name']", this).val();
-            app.createCategoryRoot(name);
+            let catName = $("input[name='name']", this).val();
+            app.createCategoryRoot(catName);
             event.preventDefault();
         });
 
@@ -437,7 +433,8 @@ $("#create-post-modal").on("show.bs.modal", function (e) {
                 $('#create-post-modal').modal('hide');
             }, 100);
             new Promise(function () {
-                $('#newCategorySelect').click();
+                location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category';
+                $('#create-category-modal').modal('show');
             }).then(function () {
                 setTimeout(function () {
                     $('#create-post-modal').modal('show');
