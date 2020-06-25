@@ -22,6 +22,16 @@
     <main id="crudapp"></main>
   </div>
 
+  <template id="home-page">
+    <section>
+      <div>
+        <h2>Home Page</h2>
+        <router-link to="/posts" class="btn btn-secondary">Posts</router-link>
+        <router-link to="/categories" class="btn btn-secondary">Categories</router-link>
+      </div>
+    </section>
+  </template>
+
   <template id="post-list">
     <section>
       <div class="actions">
@@ -53,7 +63,7 @@
             </td>
             <td>{{ post.description }}</td>
             <td>
-              {{ post.category }}
+              {{ post.category.toString() }}
             </td>
             <td>
               <router-link class="btn btn-primary btn-xs" :to="{name: 'edit-post', params: {post_id: post.id}}"
@@ -79,10 +89,6 @@
           <label for="add-description">Description</label>
           <textarea class="form-control" id="add-description" rows="10" v-model="post.description"></textarea>
         </div>
-        <div class="form-group">
-          <label for="add-category">Categories</label>
-          <input type="number" class="form-control" id="add-category" v-model="post.category" />
-        </div>
         <button type="submit" class="btn btn-primary" @click="createPost">Create</button>
         <router-link to="/" class="btn btn-default">Cancel</router-link>
       </form>
@@ -95,7 +101,7 @@
       <b>Description: </b>
       <div>{{ post.description }}</div>
       <b>Category:</b>
-      <div>{{ post.category }}</span></div>
+      <div>{{ post.category.toString() }}</span></div>
       <br />
       <router-link to="/">Back to posts list</router-link>
     </section>
@@ -112,10 +118,6 @@
         <div class="form-group">
           <label for="edit-description">Description</label>
           <textarea class="form-control" id="edit-description" rows="3" v-model="post.description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="edit-category">Category </label>
-          <input type="number" class="form-control" id="edit-category" v-model="post.category" />
         </div>
         <button type="submit" class="btn btn-primary" @click="updatePost">Save</button>
         <router-link to="/" class="btn btn-default">Cancel</router-link>
@@ -168,16 +170,6 @@
           </tr>
         </tbody>
       </table>
-    </section>
-  </template>
-
-  <template id="home-page">
-    <section>
-      <div>
-        <h2>Home Page</h2>
-        <router-link to="/posts" class="btn btn-secondary">Posts</router-link>
-        <router-link to="/categories" class="btn btn-secondary">Categories</router-link>
-      </div>
     </section>
   </template>
 
@@ -333,15 +325,21 @@
                 <textarea class="form-control" id="add-description" name="description" rows="10"
                   v-model="product.description"></textarea>
               </div>
-              <div class="form-group" id="add-categories" name="categoryList">
+              <div class="form-group" id="edit-categories" name="categoryList">
+                <a href='files:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category'
+                  id="newCategorySelect" data-toggle="modal" data-target="#create-category-modal"></a>
                 <select class="selectpicker" id="createFormSelected" name="selectedPosts" multiple>
+                  <option value="Create new category">
+                    Create new category
+                  </option>
+                  <option v-for="cat in categories">{{cat.name}}</option>
                   <option value="Social">Social</option>
                   <option value="Technology">Technology</option>
                   <option value="Academic">Academic</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-danger" id="create-post-btn" data-postName="">Create</button>
-              <router-link to="/" class="btn btn-default">Cancel</router-link>
+              <button type="submit" class="btn btn-danger mt-4" id="create-post-btn" data-postName="">Create</button>
+              <router-link to="/" class="btn btn-default mt-4">Cancel</router-link>
             </form>
           </section>
         </div>
@@ -377,14 +375,20 @@
                   v-model="product.description"></textarea>
               </div>
               <div class="form-group" id="edit-categories" name="categoryList">
+                <a href='files:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category'
+                  id=" newCategorySelect" data-toggle="modal" data-target="#create-category-modal"></a>
                 <select class="selectpicker" id="editFormSelected" name="selectedPosts" multiple>
+                  <option value="Create new category">
+                    Create new category
+                  </option>
+                  <option v-for="cat in categories">{{cat.name}}</option>
                   <option value="Social">Social</option>
                   <option value="Technology">Technology</option>
                   <option value="Academic">Academic</option>
                 </select>
               </div>
-              <button type="submit " class="btn btn-danger" id="edit-post-btn" data-postName="">Save</button>
-              <router-link to="/" class="btn btn-default">Cancel</router-link>
+              <button type="submit " class="btn btn-danger mt-4" id="edit-post-btn" data-postName="">Save</button>
+              <router-link to="/" class="btn btn-default mt-4">Cancel</router-link>
             </form>
           </section>
         </div>
