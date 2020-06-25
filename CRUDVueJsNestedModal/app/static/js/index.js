@@ -357,7 +357,18 @@ $("#edit-post-modal").on("show.bs.modal", function (e) {
         }
         $('#editFormSelected').append($select).selectpicker('refresh');
     }
-
+    if ($('#innerSelectedEdit').childElementCount != categories.length) {
+        $('#innerSelectedEdit').remove();
+        let $select = $('<select/>', {
+            'class': "selectpicker",
+            'id': "innerSelectedEdit",
+            'multiple': ""
+        });
+        for (let i = 0; i < categories.length; i++) {
+            $select.append('<option value=' + categories[i].name + '>' + categories[i].name + '</option>');
+        }
+        $('#editFormSelected').append($select).selectpicker('refresh');
+    }
     $('#editFormSelected').selectpicker('deselectAll');
     $('#innerSelectedEdit').selectpicker('deselectAll');
 
@@ -412,7 +423,20 @@ $("#create-category-modal").on("show.bs.modal", function (e) {
 
 //create a new post
 $("#create-post-modal").on("show.bs.modal", function (e) {
+
     if ($('#innerSelectedCreate')[0] == undefined) {
+        let $select = $('<select/>', {
+            'class': "selectpicker",
+            'id': "innerSelectedCreate",
+            'multiple': ""
+        });
+        for (let i = 0; i < categories.length; i++) {
+            $select.append('<option value=' + categories[i].name + '>' + categories[i].name + '</option>');
+        }
+        $('#createFormSelected').append($select).selectpicker('refresh');
+    }
+    if ($('#innerSelectedCreate').childElementCount != categories.length) {
+        $('#innerSelectedCreate').remove();
         let $select = $('<select/>', {
             'class': "selectpicker",
             'id': "innerSelectedCreate",
