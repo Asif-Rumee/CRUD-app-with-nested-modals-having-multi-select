@@ -351,9 +351,18 @@ $("#edit-category-modal").on("show.bs.modal", function (e) {
 
 //edit post 
 $("#edit-post-modal").on("show.bs.modal", function (e) {
+    let $select = $('<select/>', {
+        'class': "selectpicker"
+    });
+    for (let i = 0; i < categories.length; i++) {
+        $select.append('<option value=' + categories[i].name + '>' + categories[i].name + '</option>');
+    }
+    $('#editFormSelected').append($select).selectpicker('refresh');
     $('#editFormSelected').selectpicker('deselectAll');
+
     $('#editFormSelected').on("change", function () {
         let categoriesSelected = $('#editFormSelected').val();
+        console.log($('#editFormSelected').val().toString());
         if (categoriesSelected[0] == 'Create new category') {
             setTimeout(function () {
                 $('#edit-post-modal').modal('hide');
@@ -371,7 +380,8 @@ $("#edit-post-modal").on("show.bs.modal", function (e) {
 
     $("#edit-post-btn").on("click", function (e) {
         $("#postEditForm").submit(function (event) {
-            console.log(categoriesSelected);
+            let categoriesSelected = $('#editFormSelected').val();
+            console.log($('#editFormSelected'));
             let name = $("input[name='editNamePost']", this).val();
             let description = $("textarea:input[name='editDescription']", this).val();
             let category = categoriesSelected;
@@ -405,8 +415,17 @@ $("#create-category-modal").on("show.bs.modal", function (e) {
 //create a new post
 $("#create-post-modal").on("show.bs.modal", function (e) {
     $('#createFormSelected').selectpicker('deselectAll');
+    let $select = $('<select/>', {
+        'class': "selectpicker"
+    });
+    for (let i = 0; i < categories.length; i++) {
+        $select.append('<option value=' + categories[i].name + '>' + categories[i].name + '</option>');
+    }
+    $('#createFormSelected').append($select).selectpicker('refresh');
+
     $('#createFormSelected').on("change", function () {
         let categoriesSelected = $('#createFormSelected').val();
+        console.log(categoriesSelected);
         if (categoriesSelected[0] == 'Create new category') {
             setTimeout(function () {
                 $('#create-post-modal').modal('hide');
@@ -424,7 +443,8 @@ $("#create-post-modal").on("show.bs.modal", function (e) {
 
     $("#create-post-btn").on("click", function (e) {
         $("#postCreateForm").submit(function (event) {
-            categoriesSelected = $('#createFormSelected').val();
+            let categoriesSelected = $('#createFormSelected').val();
+            console.log(categoriesSelected);
             let name = $("input[name='namePost']", this).val();
             let description = $("textarea:input[name='description']", this).val();
             let category = categoriesSelected;
