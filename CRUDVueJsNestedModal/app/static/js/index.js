@@ -378,13 +378,11 @@ $("#edit-post-modal").on("show.bs.modal", function (e) {
             setTimeout(function () {
                 $('#edit-post-modal').modal('hide');
             }, 100);
-            new Promise(function () {
-                location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category';
-                $('#create-category-modal').modal('show');
-            }).then(function () {
-                setTimeout(function () {
-                    $('#edit-post-modal').modal('show');
-                }, 100);
+            location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category';
+            $('#create-category-modal').modal('show');
+            $('#create-category-modal').on('hide.bs.modal', function () {
+                location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/post/1/edit';
+                $('#edit-post-modal').modal('show');
             });
         }
     });
@@ -456,13 +454,11 @@ $("#create-post-modal").on("show.bs.modal", function (e) {
             setTimeout(function () {
                 $('#create-post-modal').modal('hide');
             }, 100);
-            new Promise(function () {
-                location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category';
-                $('#create-category-modal').modal('show');
-            }).then(function () {
-                setTimeout(function () {
-                    $('#create-post-modal').modal('show');
-                }, 100);
+            location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-category';
+            $('#create-category-modal').modal('show');
+            $('#create-category-modal').on('hide.bs.modal', function () {
+                location.href = 'file:///E:/Flask%20Python%20Freelancing/weDevs%20Assignment/CRUDVueJsNestedModal/app/index.html#/add-post';
+                $('#create-post-modal').modal('show');
             });
         }
     });
