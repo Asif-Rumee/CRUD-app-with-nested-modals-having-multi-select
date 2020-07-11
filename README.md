@@ -1,4 +1,4 @@
-# Que: 4 
+# Vue.js CRUD app nested modals with multi-select
 Pick any CSS framework. Create a CRUD using vue-router for two resources: Posts and Categories. A post belongs to multiple categories.
 
 Conditions: Create and Edit forms should be within modals. While editing a Post, user should be able to update the category using a multi-select (because a post can have multiple categories) and the first item of that dropdown should be “Create New Category” so that the user can create a category on the fly. Visit this link to get a clearer idea: http://tareq.in/Ij0S77
